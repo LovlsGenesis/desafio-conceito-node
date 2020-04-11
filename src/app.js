@@ -52,35 +52,13 @@ app.put("/repositories/:id",validateId, (request, response) => {
     techs,
     likes: likes
   }
-  
+
   repositories[repoIndex] = repo
   if (repo.likes != repositories[repoIndex]["likes"]) {
     return response.status(400).json({error: "Can't update likes."})
   }
   return response.status(200).json(repo)
 });
-
-// app.put("/repositories/:id", (request, response) => {
-//   const { id } = request.params;
-//   const { title, url, techs } = request.body;
-
-//   const sameId = repositories.findIndex(repo => repo.id === id);
-
-//   if (sameId < 0) {
-//     return response.json({
-//       error: "Repositories not found"
-//     })
-//   }
-
-//   const likes = repositories[sameId].likes;
-
-//   const repo = { id, title, url, techs };
-//   repo.likes = likes;
-
-//   repositories[sameId] = repo;
-
-//   return response.json(repo);
-// });
 
 app.delete("/repositories/:id", (request, response) => {
   const { id } = request.params;
